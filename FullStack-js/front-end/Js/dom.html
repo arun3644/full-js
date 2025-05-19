@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM in Forms using onclick</title>
+</head>
+<body>
+
+  <h2>Form Example with onclick</h2>
+
+  <form id="myForm">
+    <label>Name: <input type="text" id="name" /></label><br><br>
+    <label>Email: <input type="email" id="email" /></label><br><br>
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function submitForm() {
+      
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+
+     
+      document.getElementById("result").textContent =
+        `Name: ${name}, Email: ${email}`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let users = [
+            { id: 1, name: "arun" },
+            { id: 2, name: "akilesh" }
+        ]
+
+        function createUser(user) {
+            return new Promise((res) => {
+                setTimeout(() => {
+                    users.push(user);
+                    res("created successfully");
+                }, 500)
+            })
+        }
+
+        function getUsers() {
+            return new Promise((res) => {
+                setTimeout(() => {
+                    res(users);
+                }, 500)
+            })
+        }
+
+        function updateUser(id, newName) {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    const user = users.find(u => u.id === id);
+                    if (user) {
+                        user.id = newName;
+                        res("updated successfully");
+                    }
+                    else
+                        rej("user not found")
+                }, 500)
+            })
+        }
+
+
+        function deleteUser(id) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const i = users.findIndex(u => u.id === id);
+                    if (i !== -1) {
+                        users.splice(i, 1);
+                        resolve("User deleted successfully");
+                    } else {
+                        reject("User not found");
+                    }
+                }, 1000);
+            });
+        }
+
+        createUser({id:3,name:"karthi"}).then((msg)=>{
+            console.log(msg);
+            return getUsers();
+        }).then((user)=>{
+            console.log("users: ",user);
+            return updateUser(1,"naveen");
+        }).then((msg)=>{
+            console.log(msg);
+            return getUsers();
+        }).then((msg)=>{
+            console.log(msg);
+            return deleteUser(3);
+        }).then((msg)=>{
+            console.log(msg);
+            return getUsers();
+        }).then((msg)=>{
+            console.log(msg);
+        }).then(()=>{
+            console.log("Completed.......");
+        }).catch((err)=>{
+            console.error(err);
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // createUser({ id: 3, name: "Alice" })
+        //     .then((msg) => {
+        //         console.log(msg);
+        //         return getUsers();
+        //     })
+        //     .then((allUsers) => {
+        //         console.log("After Create:", allUsers);
+        //         return updateUser(2, "Janet");
+        //     })
+        //     .then((msg) => {
+        //         console.log(msg);
+        //         return getUsers();
+        //     })
+        //     .then((allUsers) => {
+        //         console.log("After Update:", allUsers);
+        //         return deleteUser(1);
+        //     })
+        //     .then((msg) => {
+        //         console.log(msg);
+        //         return getUsers();
+        //     })
+        //     .then((allUsers) => {
+        //         console.log("After Delete:", allUsers);
+        //     })
+        //     .catch((err) => {
+        //         console.error("Error:", err);
+        //     });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const fs = require('fs/promises');
+
+
+    async function fileOperations() {
+      try {
+
+        await fs.writeFile('sample.txt', 'Hello, this is the first line.\n');
+        console.log("File written successfully");
+
+
+        let data = await fs.readFile('sample.txt', 'utf-8');
+        console.log("File content after write:", data);
+
+        await fs.appendFile('sample.txt', 'Now we are adding a second line.\n');
+        console.log("Content appended successfully");
+
+        data = await fs.readFile('sample.txt', 'utf-8');
+        console.log(" File content after update:", data);
+
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    }
+
+    fileOperations();
+
+  </script>
+
+</body>
+
+</html>

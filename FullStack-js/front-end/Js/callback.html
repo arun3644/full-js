@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function myDisplayer(some) {
+        //     console.log(some);
+        // }
+
+        // function myCalculator(num1, num2) {
+        //     let sum = num1 + num2;
+        //     return sum;
+        // }
+
+
+        // let result = myCalculator(5, 5);
+        // myDisplayer(result);
+
+
+
+
+
+
+        let users = [
+            { id: 1, name: "arun" },
+            { id: 2, name: "akilesh" }
+        ]
+
+        function createUser(user, callback) {
+            setTimeout(() => {
+                users.push(user);
+                console.log("created successfully");
+                callback();
+            }, 500)
+        }
+
+        function getUsers(callback) {
+            setTimeout(() => {
+                console.log("users: ", users);
+                callback();
+            }, 500)
+        }
+
+        function updateUser(id, newName, callback) {
+            const user = users.find(u => u.id === id);
+            if (user) {
+                user.name = newName;
+                console.log("updated successfully");
+                callback();
+            }
+            else
+                console.log("user not found");
+        }
+
+        function deleteUser(id, callback) {
+            const i = users.findIndex(u => u.id === id);
+            if (i!=-1) {
+                users.splice(i, 1);
+                console.log("deleted successfully");
+                callback();
+            }
+            else
+            console.log("user not found");
+        }
+
+
+        createUser({ id: 3, name: 'lokesh' }, () => {
+            getUsers(() => {
+                updateUser(1, "karthi",()=>{
+                    getUsers(()=>{
+                        deleteUser(3,()=>{
+                            getUsers(()=>{
+                                console.log()
+                            })
+                        })
+                    })
+                })
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // // ==== USERS DATABASE (mock) ====
+        // let users = [
+        //     { id: 1, name: "John" },
+        //     { id: 2, name: "Jane" }
+        // ];
+
+        // // ==== CREATE ====
+        // function createUser(user, callback) {
+        //     setTimeout(() => {
+        //         users.push(user);
+        //         console.log("User created successfully.");
+        //         callback();
+        //     }, 1000);
+        // }
+
+        // // ==== READ ====
+        // function getUsers(callback) {
+        //     setTimeout(() => {
+        //         console.log("users:", users);
+        //         callback();
+        //     }, 500);
+        // }
+
+        // // ==== UPDATE ====
+        // function updateUser(id, newName, callback) {
+        //     setTimeout(() => {
+        //         const user = users.find(u => u.id === id);
+        //         if (user) {
+        //             user.name = newName;
+        //             console.log("User updated successfully.");
+        //         } else {
+        //             console.log("User not found.");
+        //         }
+        //         callback();
+        //     }, 1000);
+        // }
+
+        // // ==== DELETE ====
+        // function deleteUser(id, callback) {
+        //     setTimeout(() => {
+        //         const index = users.findIndex(u => u.id === id);
+        //         if (index !== -1) {
+        //             users.splice(index, 1);
+        //             console.log("User deleted successfully.");
+        //         } else {
+        //             console.log("User not found.");
+        //         }
+        //         callback();
+        //     }, 1000);
+        // }
+
+
+        // createUser({id:6, name:"karthi"},()=>{
+        //     getUsers(()=>{
+        //         updateUser(2, "naveen",()=>{
+        //             getUsers(()=>{
+        //                 deleteUser(1,()=>{
+        //                     getUsers(()=>{
+        //                         console.log("completed....")
+        //                     });
+        //                 });
+        //             });
+        //         });
+        //     });
+        // });
+
+    </script>
+</body>
+
+</html>
