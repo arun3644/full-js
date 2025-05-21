@@ -1,0 +1,91 @@
+Sure! I’ll give you a minimal working example of an Angular 19 standalone app with routing, including all files you need: main.ts, app.component.ts, home.component.ts, about.component.ts, and the basic HTML templates.
+
+1. main.ts
+ts
+Copy
+Edit
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, Routes } from '@angular/router';
+
+import { AppComponent } from './app/app.component';
+import { HomeComponent } from './app/home.component';
+import { AboutComponent } from './app/about.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)],
+});
+2. app.component.ts
+ts
+Copy
+Edit
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterLink, RouterOutlet],
+  template: `
+    <nav>
+      <a routerLink="/home" style="margin-right: 10px;">Home</a>
+      <a routerLink="/about">About</a>
+    </nav>
+    <hr />
+    <router-outlet></router-outlet>
+  `,
+  styles: []
+})
+export class AppComponent {}
+3. home.component.ts
+ts
+Copy
+Edit
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  template: `<h2>Welcome to Home Page</h2>`,
+})
+export class HomeComponent {}
+4. about.component.ts
+ts
+Copy
+Edit
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-about',
+  standalone: true,
+  template: `<h2>Welcome to About Page</h2>`,
+})
+export class AboutComponent {}
+How to test:
+Run your Angular project using:
+
+bash
+Copy
+Edit
+ng serve
+Visit these URLs in your browser:
+
+http://localhost:4200 → redirects to /home
+
+http://localhost:4200/home → shows Home page
+
+http://localhost:4200/about → shows About page
+
+Notes:
+If you refresh at /about or /home and still see “Cannot GET /about” or “Cannot GET /home”, it’s a server issue. Angular CLI’s ng serve handles this internally, so it shouldn’t happen during dev.
+
+If you deploy your app somewhere else (like Apache or Nginx), configure your server to serve index.html for all routes as explained earlier.
+
+If you want, I can help you prepare a minimal project structure or fix your existing project with these files.
+
+Would you like me to provide these as downloadable files or a zip?
